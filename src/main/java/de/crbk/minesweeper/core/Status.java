@@ -1,10 +1,14 @@
 package de.crbk.minesweeper.core;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.MessageFormat;
 
-@SuppressWarnings("SpellCheckingInspection")
+@SuppressWarnings({"SpellCheckingInspection", "HardCodedStringLiteral"})
 public enum Status {
     
     EMPTY(loadImage("/de/crbk/minesweeper/0.png")),
@@ -36,13 +40,23 @@ public enum Status {
     }
     
     private static Image loadImage(final String aFilePath) {
-        if (Status.class.getResource(aFilePath) == null) {
-            throw new IllegalStateException(
-                    MessageFormat.format("could not load resource ''{0}''", aFilePath)
+        final BufferedImage bufferedImage;
+        try {
+            final InputStream resourceAsStream = Status.class.getResourceAsStream(aFilePath);
+            if (resourceAsStream == null) {
+                throw new IllegalStateException(
+                        MessageFormat.format("could not load resource ''{0}''", aFilePath)
+                );
+            }
+
+            bufferedImage = ImageIO.read(resourceAsStream);
+        } catch (final IOException e) {
+            throw new RuntimeException(
+                    MessageFormat.format("failed to load image ''{0}''", aFilePath)
             );
         }
 
-        final ImageIcon imageIcon = new ImageIcon(aFilePath);
+        final ImageIcon imageIcon = new ImageIcon(bufferedImage);
         return imageIcon.getImage();
     }
 }
