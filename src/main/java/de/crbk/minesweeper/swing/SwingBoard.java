@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 public class SwingBoard extends JComponent {
 
@@ -148,7 +147,7 @@ public class SwingBoard extends JComponent {
                             .filter(Field::isHidden)
                             .filter(pNeighbour -> pNeighbour.getStatus() != Status.MINE)
                             .filter(pNeighbour -> !fields.contains(pNeighbour))
-                            .collect(Collectors.toList())
+                            .toList()
             );
         }
     }
@@ -184,7 +183,7 @@ public class SwingBoard extends JComponent {
     private boolean checkWinConditions() {
         final List<Field> fields = Arrays.stream(board.getFields())
                 .flatMap(Arrays::stream)
-                .collect(Collectors.toList());
+                .toList();
         
         return fields.stream().allMatch(aField -> {
             if (aField.getStatus() != Status.MINE) {

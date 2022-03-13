@@ -49,35 +49,17 @@ public class Board {
                     .filter(aField -> aField.getStatus() == Status.MINE)
                     .count();
             
-            final Status status;
-            switch (closeMines) {
-                case 1:
-                    status = Status.ONE_CLOSE;
-                    break;
-                case 2:
-                    status = Status.TWO_CLOSE;
-                    break;
-                case 3:
-                    status = Status.THR_CLOSE;
-                    break;
-                case 4:
-                    status = Status.FOU_CLOSE;
-                    break;
-                case 5:
-                    status = Status.FIV_CLOSE;
-                    break;
-                case 6:
-                    status = Status.SIX_CLOSE;
-                    break;
-                case 7:
-                    status = Status.SEV_CLOSE;
-                    break;
-                case 8:
-                    status = Status.EIG_CLOSE;
-                    break;
-                default:
-                    status = Status.EMPTY;
-            }
+            final Status status = switch (closeMines) {
+                case 1 -> Status.ONE_CLOSE;
+                case 2 -> Status.TWO_CLOSE;
+                case 3 -> Status.THR_CLOSE;
+                case 4 -> Status.FOU_CLOSE;
+                case 5 -> Status.FIV_CLOSE;
+                case 6 -> Status.SIX_CLOSE;
+                case 7 -> Status.SEV_CLOSE;
+                case 8 -> Status.EIG_CLOSE;
+                default -> Status.EMPTY;
+            };
             neighbour.setStatus(status);
         }
     }
