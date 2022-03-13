@@ -6,7 +6,6 @@ public enum MessageType {
     LOGIN,
     LOGOUT,
     FIELD_MARKED,
-    FIELD_UNCOVERED,
-    ;
+    FIELD_UNCOVERED
     
 }
