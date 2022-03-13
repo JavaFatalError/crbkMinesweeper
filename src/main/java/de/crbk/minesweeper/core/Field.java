@@ -2,10 +2,14 @@ package de.crbk.minesweeper.core;
 
 import de.crbk.minesweeper.util.StringUtil;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Field implements Serializable {
-    
+
+    @Serial
+    private static final long serialVersionUID = 4778479887856399790L;
+
     private int x;
     private int y;
     

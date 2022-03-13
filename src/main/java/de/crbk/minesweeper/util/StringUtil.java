@@ -1,9 +1,8 @@
 package de.crbk.minesweeper.util;
 
 import java.lang.reflect.Field;
+import java.text.MessageFormat;
 import java.util.StringJoiner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public final class StringUtil {
 
@@ -21,13 +20,15 @@ public final class StringUtil {
             try {
                 final String fieldName = field.getName();
                 final Object fieldValue = field.get(object);
-                joiner.add(fieldName + "=" + fieldValue);
-            } catch (final IllegalAccessException pE) {
-                Logger.getLogger(StringUtil.class.getName()).log(
-                        Level.WARNING,
-                        "exception building string",
-                        pE
+                joiner.add(
+                        MessageFormat.format(
+                                "{0}={1}",
+                                fieldName,
+                                fieldValue
+                        )
                 );
+            } catch (final IllegalAccessException pE) {
+                throw new RuntimeException("error building toString for given object", pE);
             }
             field.setAccessible(false);
         }
