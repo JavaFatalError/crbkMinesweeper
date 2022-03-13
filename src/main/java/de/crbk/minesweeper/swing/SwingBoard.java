@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serial;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +16,10 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class SwingBoard extends JComponent {
-    
+
+    @Serial
+    private static final long serialVersionUID = 1596893227284592045L;
+
     public enum GameStatus {
         GAME_RUNNING(""),
         GAME_OVER("Game Over"),

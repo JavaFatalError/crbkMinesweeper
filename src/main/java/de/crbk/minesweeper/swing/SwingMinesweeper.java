@@ -6,8 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serial;
 
 public class SwingMinesweeper extends JPanel {
+
+    @Serial
+    private static final long serialVersionUID = 2563276030271345247L;
 
     private final SwingBoard swingBoard;
     private final JLabel lblStatus;
